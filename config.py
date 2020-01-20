@@ -13,7 +13,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATION = False
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://<enterpd>:<enterpd>@localhost/<enterbf>'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:izoh1234@localhost/murathe'
 
 
 class ProdConfig(Config):
@@ -22,13 +22,13 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = '+test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:izoh1234@localhost/murathe_test'
 
 class   DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = ''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:izoh1234@localhost/murathe'
     DEBUG = True
 
-config_option = {
+config_options = {
     'development': DevConfig,
     'production': ProdConfig,
     'text': TestConfig
