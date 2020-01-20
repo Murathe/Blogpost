@@ -27,11 +27,19 @@ class User(UserMixin,db.model):
     def password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    def verify_passowrd(self, password):
+        return check_password_hash(self.password_hash, password)
+
     def __repr__(self):
         return f'User {self.username}'
 
-class Category(db.model):
+class Category(db.Model):
     __tablename__ = 'categories'
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(50))
+
+class POst(db.model):
+    __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30))
     text = db.Column(db.String)
@@ -43,6 +51,28 @@ class Category(db.model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     comments = db.relationship('Comment', backref = 'posts', lazy = 'dynamic')
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def get_posts(self):
+        posts = Post.query.all()
+        return posts
+
+    def get_post(self):
+        post = Post.query.filter_by(post_id)
+        return post
+
+    def __repr__(self):
+        return f'User {self.name}'
+
+
+class Comment(db.model):
+    __tablename__ = 'comments'
+    
+
+    
 
 
     
