@@ -33,3 +33,17 @@ class User(UserMixin,db.model):
 class Category(db.model):
     __tablename__ = 'categories'
     id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(30))
+    text = db.Column(db.String)
+    title = db.Column(db.String)
+    username = db.Column(db.String(30), index = True)
+    post_id = db.Column(db.Integer)
+    Category = db.Column(db.String(50))
+    posted = db.Column(db.DateTime, default = datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    comments = db.relationship('Comment', backref = 'posts', lazy = 'dynamic')
+
+
+    
+
