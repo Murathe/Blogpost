@@ -44,3 +44,46 @@ def delete(id):
 
 @main.route('/comment/new/<int:post_id>', methods=['GET','POST'])
 @login_required
+def delete_comment(id):
+    deleted_comment = Comment.query.filter_by(id=id).first()
+    db.session.delete(deleted_comment)
+    db.session.commit()
+    
+    return redirect(url_for('main.index'))
+
+@main.route('/comment/new/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def new_comment(post_id):
+    form = CommentForm()
+    post = Post.query.filter_by(id=post_id).first()
+
+    if form.validate_on_submit():
+        comment = form.comment.data():
+        new_comment = Comment(text=comment, user_id=current_user.id, post_id=post_id)
+
+        db.session.add(new_comment)
+        db.session.commit()
+
+        all_comments = Comment.query.filter_by(post_id=post_id).all()
+
+        return render_template('comment.html', form=form, comments=all_comments, post=post)
+
+@main.route('/user/<usname>/update', methods=['GET', 'POST'])
+@login_required
+def update_profile(usname):
+    user = USer.query.filter_by(username=usname).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile', usname=user.username))
+
+    return render_template('profile/update.html', form=form)
+
