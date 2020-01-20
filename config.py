@@ -20,4 +20,18 @@ class ProdConfig(Config):
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
-    
+
+class TestConfig(Config):
+    SQLALCHEMY_DATABASE_URI = '+test'
+
+class   DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = ''
+    DEBUG = True
+
+config_option = {
+    'development': DevConfig,
+    'production': ProdConfig,
+    'text': TestConfig
+}
+
+
