@@ -38,7 +38,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(50))
 
-class POst(db.Model):
+class Post(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(30))
