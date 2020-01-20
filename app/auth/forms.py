@@ -8,3 +8,8 @@ class SignupForm(FlaskForm):
     username = StringField('Username', validators=[Required()])
     password = PasswordField('Password', validators=[Required(), EqualTo('password_confirm', message='Password must be the same')])
     password_confirm = PasswordField('Confirm password', validators=[Required()])
+
+   
+class LoginForm(FlaskForm):
+    
+        
