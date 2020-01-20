@@ -70,7 +70,17 @@ class POst(db.model):
 
 class Comment(db.model):
     __tablename__ = 'comments'
-    
+    id = db.Column(db.Integer, primary_key=True)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    comment_id = db.Column(db.Integer,)
+    title = db.Column(db.String)
+    username = db.Column(db.String(40), index = True)
+    text = db.Column(db.String)
+    posted = db.Column(db.DateTime, default = datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_comment(self):
+        
 
     
 
