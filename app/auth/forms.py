@@ -5,3 +5,5 @@ from wtforms import ValidateError
 
 class SignupForm(FlaskForm):
     email = StringField('Email Address', validators=[Required(), Email()])
+    username = StringField('Username', validators=[Required()])
+    
