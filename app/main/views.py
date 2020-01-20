@@ -87,3 +87,15 @@ def update_profile(usname):
 
     return render_template('profile/update.html', form=form)
 
+@main.route('/user/<usname>update<pic>', methods=['GET', 'POST'])
+@login_required
+def update_pic(usname):
+    user = User.query.filter_by(username=usname).first()
+
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = oath
+        db.session.commit()
+
+    return redirect(url_for('main.profile', usname=usname))
