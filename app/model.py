@@ -84,6 +84,13 @@ class Comment(db.model):
         db.session.commit()
 
     def get_comments(self):
+        comment = Comment.query.filter_by(comment_id)
+        return comment
+
+    def get_comment(self):
+        comment = Comment.query.filter_by(comment_id)
+        return comment
+        
 
     
 
