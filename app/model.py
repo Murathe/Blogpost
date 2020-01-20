@@ -90,8 +90,12 @@ class Comment(db.model):
     def get_comment(self):
         comment = Comment.query.filter_by(comment_id)
         return comment
-        
 
+class Quote:
+    def __init__(self,id,quote,author):
+        self.id = id
+        self.quote = quote
+        self.author = author
     
 
 
