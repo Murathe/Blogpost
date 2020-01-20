@@ -11,5 +11,5 @@ class SignupForm(FlaskForm):
 
    
 class LoginForm(FlaskForm):
-    
+   email = StringField('Email Address', validators=[Required(),Email()]) 
         
