@@ -4,8 +4,8 @@ from app import db
 
 class TestComment(unittest.TestCase):
     def setUp(self):
-        self.user_James = User(username='Christine', password='potato', email='christine@ms.com')
-        self.new_comment = Comment(comment_id=12345, text='This is awesome', user=self.user_James)
+        self.user_Murathe = User(username='Murathe', password='murathe', email='murathe@gmail.com')
+        self.new_comment = Comment(comment_id=112233, text='Flask not a friend', user=self.user_Murathe)
 
     def tearDown(self):
         Comment.query.delete()
@@ -14,9 +14,9 @@ class TestComment(unittest.TestCase):
         self.assertTrue(isinstance(self.new_comment, Comment))
 
     def test_check_instance_variables(self):
-        self.assertEquals(self.new_comment.comment_id, 12345)
-        self.assertEquals(self.new_comment.pitch_comment,'This is awesome')
-        self.assertEquals(self.new_comment.user, self.user_James)
+        self.assertEquals(self.new_comment.comment_id, 112233)
+        self.assertEquals(self.new_comment.pitch_comment,'Flask not a friend')
+        self.assertEquals(self.new_comment.user, self.user_Murathe)
 
     def test_save_comment(self):
         self.new_comment.save_comment()
@@ -24,5 +24,5 @@ class TestComment(unittest.TestCase):
 
     def test_get_comment_by_id(self):
         self.new_comment.save_comment()
-        got_comments = Comment.get_comments(12345)
+        got_comments = Comment.get_comments(112233)
         self.assertTrue(len(got_comments) == 1)

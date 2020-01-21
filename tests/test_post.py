@@ -4,8 +4,8 @@ from app import db
 
 class TestPost(unittest.TestCase):
     def setUp(self):
-        self.user_James = User(username='Christine', password='potato', email='christine@ms.com')
-        self.new_post = Post(post_id=12345, text='Inspirational', user=self.user_James)
+        self.user_Murathe = User(username='Murathe', password='112233', email='murathe@gmail.com')
+        self.new_post = Post(post_id=112233, text='Django should be good', user=self.user_Murathe)
 
     def tearDown(self):
         Post.query.delete()
@@ -14,9 +14,9 @@ class TestPost(unittest.TestCase):
         self.assertTrue(isinstance(self.new_post, Post))
 
     def test_check_instance_variables(self):
-        self.assertEquals(self.new_post.post_id, 12345)
-        self.assertEquals(self.new_post.text, 'Inspirational')
-        self.assertEquals(self.new_post.user, self.user_James)
+        self.assertEquals(self.new_post.post_id, 112233)
+        self.assertEquals(self.new_post.text, 'Django should be good')
+        self.assertEquals(self.new_post.user, self.user_Murathe)
 
     def test_save_post(self):
         self.new_post.save_post()
@@ -24,5 +24,5 @@ class TestPost(unittest.TestCase):
 
     def test_get_post_by_id(self):
         self.new_post.save_post()
-        got_posts = Post.get_posts(12345)
+        got_posts = Post.get_posts(112233)
         self.assertTrue(len(got_posts) == 1)

@@ -11,7 +11,7 @@ from ..import db,photos
 @main.route("/",methods=["GET","POST"])
 def index():
     random_quote = get_quote()
-    categories=["FASHION & BEAUTY", "ART", "CAREER & FINANCE", "MOTHERHOOD", "GAMING", "MUSIC"]
+    categories=["ART", "FINANCE", "GAMING", "MUSIC"]
     return render_template('index.html',categories = categories,quotes=random_quote)
 
 
